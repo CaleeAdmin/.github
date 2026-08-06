@@ -1,4 +1,4 @@
-version: 1
+version: 2
 effective_date: 2026-08-06
 status: authoritative
 owner: Calee engineering and product triage
@@ -42,26 +42,59 @@ complexity:
     child_issues_required: true
 
 risk:
+  assessment_factors:
+    - impact
+    - exposure_and_blast_radius
+    - detectability
+    - recoverability
   R1:
     name: Minimal
+    definition: Negligible cosmetic, documentation-only or non-production harm that is immediately visible and safely reversible.
   R2:
     name: Low
+    definition: Limited localised harm with an obvious signal and simple workaround, retry or revert.
   R3:
     name: Moderate
+    definition: Material but bounded regression or disruption with a known workaround or controlled recovery.
   R4:
     name: High
+    definition: Material effect on core journeys, data integrity, release readiness or significant operations, potentially silent or difficult to repair.
   R5:
     name: Critical
+    definition: Credible trust-boundary, credential, privacy, billing, irreversible-data-loss, severe-lockout or major compliance harm.
+    hard_triggers:
+      - cross_account_household_organisation_or_service_data_exposure
+      - credential_or_signing_secret_exposure
+      - incorrect_charge_refund_subscription_or_entitlement
+      - authentication_authorisation_or_device_identity_bypass
+      - unapproved_collection_or_disclosure_of_private_or_childrens_data
+      - irreversible_or_widespread_customer_data_loss
+      - mass_lockout_without_safe_recovery
+      - major_legal_contractual_or_compliance_breach
 
 priority:
+  assessment_factors:
+    - current_production_or_customer_impact
+    - committed_deadline_release_or_commercial_milestone
+    - blocked_workstreams_or_people
+    - workaround_quality
+    - cost_of_delay
+    - need_to_interrupt_planned_work
   P0:
     name: Emergency
+    definition: Active incident or immediate no-workaround release, security, privacy, billing or data-integrity blocker requiring interruption of planned work.
+    temporary: true
+    active_owner_required: true
   P1:
     name: High
+    definition: Near-term committed or materially production-facing work that protects a core journey, resolves recurring impact or unblocks several scheduled workstreams.
+    scheduled_owner_required: true
   P2:
     name: Planned
+    definition: Approved work for normal planning where delay for a planning cycle is acceptable and no active blocker exists.
   P3:
     name: Backlog
+    definition: Uncommitted optimisation, polish, research, future architecture or lower-value improvement that should not displace scheduled work.
 
 classification_status:
   - Proposed
@@ -70,7 +103,23 @@ classification_status:
 required_body_fields:
   - complexity
   - complexity_rationale
+  - risk
+  - risk_rationale
+  - priority
+  - priority_rationale
   - classification_status
+
+required_risk_rationale_elements:
+  - concrete_failure_consequence
+  - affected_scope_or_blast_radius
+  - detection_path
+  - recovery_or_workaround
+
+required_priority_rationale_elements:
+  - why_now
+  - deadline_milestone_incident_or_blocker
+  - workaround
+  - cost_of_delay
 
 exact_display_names:
   C1: C1 — Trivial
@@ -78,20 +127,50 @@ exact_display_names:
   C3: C3 — Medium
   C4: C4 — Complex
   C5: C5 — Epic
+  R1: R1 — Minimal
+  R2: R2 — Low
+  R3: R3 — Moderate
+  R4: R4 — High
+  R5: R5 — Critical
+  P0: P0 — Emergency
+  P1: P1 — High
+  P2: P2 — Planned
+  P3: P3 — Backlog
 
 forbidden_display_names:
   - C4 — Large
   - C5 — Very large
   - Major
   - XL
+  - Urgent
+  - ASAP
+
+reassessment_triggers:
+  complexity:
+    - material_scope_change
+    - new_architectural_boundary
+    - decomposition_or_consolidation
+  risk:
+    - changed_failure_modes
+    - changed_rollout_scope
+    - changed_controls
+    - new_security_privacy_billing_or_data_evidence
+  priority:
+    - incident_closed_or_opened
+    - milestone_or_deadline_changed
+    - blocker_removed_or_added
+    - workaround_changed
+    - customer_exposure_changed
+    - dependency_completed
 
 initial_benchmark_snapshot:
   date: 2026-08-06
   open_issue_count: 85
   repository_count: 12
-  distribution:
+  complexity_distribution:
     C1: 0
     C2: 9
     C3: 44
     C4: 23
     C5: 9
+  risk_priority_distribution_status: not_yet_fully_audited
