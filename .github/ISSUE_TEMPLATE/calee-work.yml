@@ -1,0 +1,156 @@
+name: Calee work item
+description: Create a product, engineering, operations or regression issue using the Calee classification benchmark.
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md). Complexity measures implementation structure and uncertainty; it is independent from Risk and Priority.
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Scope and expected outcome
+      description: Describe the problem, required result and user or operational outcome.
+      placeholder: What is changing, for whom, and what should be true when complete?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repositories
+    attributes:
+      label: Repositories and components
+      description: List every repository, application, service, provider or device involved.
+      placeholder: CaleeMobile; calee-hub-core; Portal Nextcloud; physical Android device
+    validations:
+      required: true
+
+  - type: textarea
+    id: existing_architecture
+    attributes:
+      label: Existing architecture or pattern reused
+      description: Identify the existing contract, subsystem, workflow or implementation pattern this work should use.
+      placeholder: Existing Hub client API, calendar repository, provisioning orchestrator, regression fixture framework
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: boundary_changes
+    attributes:
+      label: Material boundary changes
+      description: Select every material concern introduced or changed by this issue.
+      options:
+        - label: Persistent data model or schema
+        - label: Data migration or backfill
+        - label: Authentication, authorisation, security or privacy boundary
+        - label: Billing, entitlement or external-provider lifecycle
+        - label: Backward compatibility or staged rollout
+        - label: Device policy, kiosk or physical-device platform behaviour
+        - label: Distributed coordination, queue, lease or transactional workflow
+        - label: Infrastructure, deployment or operating subsystem
+        - label: None of the above
+
+  - type: dropdown
+    id: workstreams
+    attributes:
+      label: Independently deliverable workstreams
+      description: A C5 Epic contains several independently deliverable C3 or C4 workstreams and must be decomposed.
+      options:
+        - One bounded workstream
+        - Two or more independently deliverable workstreams
+        - Not yet clear — requires decomposition before implementation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Proposed complexity
+      description: Apply the benchmark decision sequence in order.
+      options:
+        - C1 — Trivial
+        - C2 — Small
+        - C3 — Medium
+        - C4 — Complex
+        - C5 — Epic
+    validations:
+      required: true
+
+  - type: textarea
+    id: complexity_rationale
+    attributes:
+      label: Complexity rationale
+      description: Explain why this issue falls on one side of a benchmark boundary. Do not use only phrases such as “large”, “important” or “a lot of work”.
+      placeholder: Bounded feature within the existing architecture, but requiring non-trivial state, API integration and regression coverage; no schema, migration or security-boundary change.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Proposed risk
+      options:
+        - R1 — Minimal
+        - R2 — Low
+        - R3 — Moderate
+        - R4 — High
+        - R5 — Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk_rationale
+    attributes:
+      label: Risk rationale
+      description: Describe the likely consequence and recovery difficulty if the implementation fails.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Proposed priority
+      options:
+        - P0 — Emergency
+        - P1 — High
+        - P2 — Planned
+        - P3 — Backlog
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Explicitly out of scope
+      description: State what this issue will not deliver so the complexity remains bounded.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide observable, testable completion criteria.
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: child_workstreams
+    attributes:
+      label: Child workstreams or linked issues
+      description: Required for C5. For other levels, list known dependencies or write Not applicable.
+      placeholder: "- [ ] CaleeAdmin/repository#123 — bounded child workstream"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Classification confirmation
+      options:
+        - label: I applied the C1–C5 decision sequence and treated Complexity independently from Risk and Priority.
+          required: true
+        - label: I will request reassessment if the scope materially changes.
+          required: true
