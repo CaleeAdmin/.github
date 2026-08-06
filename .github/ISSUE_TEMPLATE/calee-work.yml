@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md). Complexity measures implementation structure and uncertainty; it is independent from Risk and Priority.
+        Use the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md). Assess Complexity, Risk and Priority independently. Risk measures credible production harm. Priority measures why the work should be delivered now.
 
   - type: textarea
     id: outcome
@@ -90,6 +90,7 @@ body:
     id: risk
     attributes:
       label: Proposed risk
+      description: Score credible production harm, not issue size or urgency.
       options:
         - R1 — Minimal
         - R2 — Low
@@ -100,22 +101,67 @@ body:
       required: true
 
   - type: textarea
-    id: risk_rationale
+    id: risk_impact
     attributes:
-      label: Risk rationale
-      description: Describe the likely consequence and recovery difficulty if the implementation fails.
+      label: Risk impact and blast radius
+      description: Describe the concrete failure consequence and which users, households, services, devices or environments could be affected.
+      placeholder: Incorrect account switching could expose one retained account's cached data under another account identity.
     validations:
       required: true
+
+  - type: textarea
+    id: risk_detection_recovery
+    attributes:
+      label: Risk detection and recovery
+      description: Explain whether failure is obvious or silent, how it would be detected, and the available rollback, repair, reconciliation or workaround.
+      placeholder: Cross-account leakage may be silent; detect with colliding-ID isolation tests and account-aware diagnostics. Recovery requires clearing affected caches and revoking sessions.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: critical_risk_triggers
+    attributes:
+      label: R5 critical-risk triggers
+      description: Select any credible consequence. Select None when no R5 trigger applies.
+      options:
+        - label: Cross-account, household, organisation or service private-data exposure
+        - label: Credential, token or signing-secret exposure
+        - label: Incorrect charging, refund, subscription or entitlement
+        - label: Authentication, authorisation or trusted-device bypass
+        - label: Unapproved private or children's-data collection or disclosure
+        - label: Irreversible or widespread customer-data loss
+        - label: Mass lockout without safe recovery
+        - label: Major legal, contractual or compliance breach
+        - label: None of the above
 
   - type: dropdown
     id: priority
     attributes:
       label: Proposed priority
+      description: Score delivery urgency and sequencing. P0 is reserved for active interruption and immediate coordination.
       options:
         - P0 — Emergency
         - P1 — High
         - P2 — Planned
         - P3 — Backlog
+    validations:
+      required: true
+
+  - type: textarea
+    id: priority_why_now
+    attributes:
+      label: Priority rationale — why now
+      description: State the current incident, customer impact, committed deadline, release/commercial milestone, recurring support burden or blocking dependency.
+      placeholder: Required before the August mobile release because the current production attachment path is unreliable and blocks release qualification.
+    validations:
+      required: true
+
+  - type: textarea
+    id: priority_delay
+    attributes:
+      label: Priority rationale — workaround and cost of delay
+      description: Describe any workaround, who or what remains blocked, and what happens if delivery is delayed by one planning cycle.
+      placeholder: There is no dependable user workaround. Delay keeps attachment release gates blocked and continues repeated support diagnosis.
     validations:
       required: true
 
@@ -150,7 +196,11 @@ body:
     attributes:
       label: Classification confirmation
       options:
-        - label: I applied the C1–C5 decision sequence and treated Complexity independently from Risk and Priority.
+        - label: I assessed Complexity, Risk and Priority independently using the benchmark.
           required: true
-        - label: I will request reassessment if the scope materially changes.
+        - label: The Risk rationale identifies impact, blast radius, detection and recovery.
+          required: true
+        - label: The Priority rationale identifies why now, the workaround and the cost of delay.
+          required: true
+        - label: I will request reassessment if scope, controls, rollout, incidents, milestones or dependencies materially change.
           required: true
