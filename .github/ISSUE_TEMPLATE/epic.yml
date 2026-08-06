@@ -1,0 +1,104 @@
+name: Calee epic
+description: Create a C5 programme that coordinates multiple independently deliverable workstreams.
+title: "[Epic] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for **C5 — Epic** work. A large standalone implementation is C4, not C5. Read the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md).
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Programme objective
+      description: State the business or technical outcome coordinated by this epic.
+    validations:
+      required: true
+
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Programme boundaries
+      description: Define what belongs to this epic and what is explicitly excluded.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repositories
+    attributes:
+      label: Repositories and systems
+      description: List the repositories, clients, services, providers and devices involved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: workstreams
+    attributes:
+      label: Independently deliverable workstreams
+      description: List each bounded child workstream. Each child must receive its own C1–C4 classification.
+      placeholder: "- [ ] Repository#issue — workstream and expected boundary"
+    validations:
+      required: true
+
+  - type: textarea
+    id: sequencing
+    attributes:
+      label: Dependencies and delivery sequence
+      description: Explain ordering, shared contracts, migrations, release gates and parallelisable work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Programme-level acceptance criteria
+      description: Define outcomes that prove the coordinated programme is complete, beyond individual child issues.
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Proposed risk
+      options:
+        - R1 — Minimal
+        - R2 — Low
+        - R3 — Moderate
+        - R4 — High
+        - R5 — Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk_rationale
+    attributes:
+      label: Risk rationale
+      description: Describe programme-level failure consequences and recovery difficulty.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Proposed priority
+      options:
+        - P0 — Emergency
+        - P1 — High
+        - P2 — Planned
+        - P3 — Backlog
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Epic confirmation
+      options:
+        - label: This issue contains multiple independently deliverable C3 or C4 workstreams.
+          required: true
+        - label: Child issues will be created and classified independently before implementation proceeds.
+          required: true
+        - label: Complexity, Risk and Priority have been assessed independently.
+          required: true
