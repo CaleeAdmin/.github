@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form only for **C5 — Epic** work. A large standalone implementation is C4, not C5. Read the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md).
+        Use this form only for **C5 — Epic** work. A large standalone implementation is C4, not C5. Read the [Calee Issue Classification Benchmark](../../ISSUE_CLASSIFICATION.md). Assess programme-level Risk and Priority independently from Complexity.
 
   - type: textarea
     id: objective
@@ -36,7 +36,7 @@ body:
     id: workstreams
     attributes:
       label: Independently deliverable workstreams
-      description: List each bounded child workstream. Each child must receive its own C1–C4 classification.
+      description: List each bounded child workstream. Each child must receive its own C1–C4 classification, Risk and Priority.
       placeholder: "- [ ] Repository#issue — workstream and expected boundary"
     validations:
       required: true
@@ -61,7 +61,8 @@ body:
   - type: dropdown
     id: risk
     attributes:
-      label: Proposed risk
+      label: Proposed programme risk
+      description: Score the highest credible programme-level production harm, not the number of workstreams.
       options:
         - R1 — Minimal
         - R2 — Low
@@ -72,22 +73,63 @@ body:
       required: true
 
   - type: textarea
-    id: risk_rationale
+    id: risk_impact
     attributes:
-      label: Risk rationale
-      description: Describe programme-level failure consequences and recovery difficulty.
+      label: Risk impact and blast radius
+      description: Describe concrete failure consequences and the affected accounts, households, services, devices or environments.
     validations:
       required: true
+
+  - type: textarea
+    id: risk_detection_recovery
+    attributes:
+      label: Risk detection and recovery
+      description: Explain whether failures may be silent, how they are detected and how rollback, repair or reconciliation works.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: critical_risk_triggers
+    attributes:
+      label: R5 critical-risk triggers
+      description: Select any credible consequence. Select None when no R5 trigger applies.
+      options:
+        - label: Cross-account, household, organisation or service private-data exposure
+        - label: Credential, token or signing-secret exposure
+        - label: Incorrect charging, refund, subscription or entitlement
+        - label: Authentication, authorisation or trusted-device bypass
+        - label: Unapproved private or children's-data collection or disclosure
+        - label: Irreversible or widespread customer-data loss
+        - label: Mass lockout without safe recovery
+        - label: Major legal, contractual or compliance breach
+        - label: None of the above
 
   - type: dropdown
     id: priority
     attributes:
-      label: Proposed priority
+      label: Proposed programme priority
+      description: Score why the programme should be delivered now. C5 does not automatically mean P1.
       options:
         - P0 — Emergency
         - P1 — High
         - P2 — Planned
         - P3 — Backlog
+    validations:
+      required: true
+
+  - type: textarea
+    id: priority_why_now
+    attributes:
+      label: Priority rationale — why now
+      description: Identify the active incident, committed milestone, recurring impact or blocking dependency supporting urgency.
+    validations:
+      required: true
+
+  - type: textarea
+    id: priority_delay
+    attributes:
+      label: Priority rationale — workaround and cost of delay
+      description: Explain the available workaround, blocked workstreams and effect of delaying the programme by one planning cycle.
     validations:
       required: true
 
@@ -99,6 +141,10 @@ body:
         - label: This issue contains multiple independently deliverable C3 or C4 workstreams.
           required: true
         - label: Child issues will be created and classified independently before implementation proceeds.
+          required: true
+        - label: Programme Risk identifies impact, blast radius, detection and recovery.
+          required: true
+        - label: Programme Priority identifies why now, the workaround and cost of delay.
           required: true
         - label: Complexity, Risk and Priority have been assessed independently.
           required: true
