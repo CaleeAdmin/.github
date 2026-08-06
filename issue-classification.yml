@@ -1,0 +1,97 @@
+version: 1
+effective_date: 2026-08-06
+status: authoritative
+owner: Calee engineering and product triage
+scope: all repositories owned by CaleeAdmin
+
+complexity:
+  C1:
+    name: Trivial
+    definition: Mechanical change with virtually no design decision.
+    requires_decomposition: false
+    examples:
+      - typo or copy correction
+      - obvious constant change
+      - isolated asset replacement
+
+  C2:
+    name: Small
+    definition: Localised implementation using an established pattern.
+    requires_decomposition: false
+    disqualifiers:
+      - persistent_schema_change
+      - security_boundary_change
+      - migration
+      - material_backward_compatibility_change
+      - infrastructure_subsystem
+
+  C3:
+    name: Medium
+    definition: Bounded non-trivial feature, correction or regression suite within existing architecture.
+    requires_decomposition: false
+
+  C4:
+    name: Complex
+    definition: Material architectural, security, data, billing, device-policy, migration, compatibility or infrastructure change.
+    requires_decomposition: false
+
+  C5:
+    name: Epic
+    definition: Multiple independently deliverable C3 or C4 workstreams.
+    requires_decomposition: true
+    child_issues_required: true
+
+risk:
+  R1:
+    name: Minimal
+  R2:
+    name: Low
+  R3:
+    name: Moderate
+  R4:
+    name: High
+  R5:
+    name: Critical
+
+priority:
+  P0:
+    name: Emergency
+  P1:
+    name: High
+  P2:
+    name: Planned
+  P3:
+    name: Backlog
+
+classification_status:
+  - Proposed
+  - Confirmed
+
+required_body_fields:
+  - complexity
+  - complexity_rationale
+  - classification_status
+
+exact_display_names:
+  C1: C1 — Trivial
+  C2: C2 — Small
+  C3: C3 — Medium
+  C4: C4 — Complex
+  C5: C5 — Epic
+
+forbidden_display_names:
+  - C4 — Large
+  - C5 — Very large
+  - Major
+  - XL
+
+initial_benchmark_snapshot:
+  date: 2026-08-06
+  open_issue_count: 85
+  repository_count: 12
+  distribution:
+    C1: 0
+    C2: 9
+    C3: 44
+    C4: 23
+    C5: 9
