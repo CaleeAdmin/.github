@@ -226,6 +226,24 @@ The publisher should not have to maintain separate copies for every channel.
 
 Calee can create value on both sides of the network.
 
+The product vision can be stated simply as:
+
+> **Calee Business and Calee Family into one network.**
+
+The Business side supplies and maintains useful schedules; the Family/consumer side discovers, follows and depends on them. Free publishing can therefore create network value even before a publisher becomes a paid Business customer.
+
+The approved Publisher-Free V1 entry entitlement is:
+
+```text
+1 active Business user
+3 qualifying Business-owned calendars
+public publishing encouraged
+```
+
+Public followers, viewers and search/AI discovery reach are not the primary commercial quota. Paid Calee Business should monetise organisational operating complexity — additional users, calendars and later approved capabilities — while preserving the network incentive to publish useful calendars.
+
+Paid Business plan names, prices and higher limits remain deliberately undecided and belong to the Core commercial/product-policy process rather than this vision record.
+
 Publisher-side opportunities include:
 
 - Business plans;
