@@ -16,8 +16,8 @@ DTSTAMP:20261006T080000Z
 DTSTART:20261021T100000Z
 DTEND:20261021T110000Z
 SUMMARY:Calee Connected Feed Stage 0 Scheduling Probe
-DESCRIPTION:Controlled ORGANIZER and ATTENDEE safety probe. Addresses use the reserved invalid TLD.
-ORGANIZER;CN=Calee Stage 0 Organizer:mailto:stage0-organizer@fixture.invalid
+DESCRIPTION:Controlled ORGANIZER and ATTENDEE safety probe. Attendee addresses use the reserved invalid TLD.
+ORGANIZER;CN=Calee Stage 0 Organizer:mailto:calendars@calee.com.au
 ATTENDEE;CN=Calee Stage 0 Attendee;ROLE=REQ-PARTICIPANT;RSVP=FALSE:mailto:stage0-attendee@fixture.invalid
 END:VEVENT
 BEGIN:VEVENT
