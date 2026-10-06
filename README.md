@@ -2,6 +2,12 @@
 
 This repository contains default GitHub governance files for repositories owned by `CaleeAdmin`.
 
+## Calee vision
+
+The organisation-wide product and network direction is recorded in [Calee Vision](CALEE_VISION.md).
+
+That document is strategic direction, not an automatic runtime/product-policy change. Repository-specific architecture, product-policy and implementation contracts remain authoritative for shipped behaviour until changed through their normal review process.
+
 ## Issue classification
 
 The authoritative Calee benchmark for issue Complexity, Risk and Priority is:
